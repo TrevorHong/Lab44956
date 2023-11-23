@@ -22,20 +22,19 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Initialize synchronization components
-            Program.semFull = new Semaphore(Program.size, Program.size);
-            Program.semEmpty = new Semaphore(0, Program.size);
-            Program.cBuffer = new CircularBuffer<int>(Program.size);
+            semFull = new Semaphore(size, size);
+            semEmpty = new Semaphore(0, size);
+            cBuffer = new CircularBuffer<int>(size);
 
             Thread teacherThread = new Thread(Teacher.teacher);
             Thread studentThread = new Thread(Student.student);
 
-            Program.mainForm = new Form1();
+            mainForm = new Form1();
 
             teacherThread.Start();
             studentThread.Start();
 
-            Application.Run(Program.mainForm);
+            Application.Run(mainForm);
         }
     }
 }
