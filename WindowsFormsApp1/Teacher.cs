@@ -13,17 +13,16 @@ namespace WindowsFormsApp1
         public static void teacher()
         {
             int num = 0;
-            while (true)
-            {
+            while (true) {
                 num++;
 
                 Program.semFull.WaitOne();
                 Thread.Sleep(Program.rand.Next(10) * 500);
                 Program.cBuffer.Put(num);
+                //Calls the TeacherPostedAssignment method in Form1.cs
                 Program.mainForm.TeacherPostedAssignment(num);
                 Program.semEmpty.Release();
-                if (num > Program.size - 1)
-                {
+                if (num > Program.size - 1) {
                     num = 0;
                 }
             }

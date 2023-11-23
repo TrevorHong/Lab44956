@@ -19,6 +19,8 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main(string[] args)
         {
+
+            //Used for initializing and starting the threads and semaphores
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

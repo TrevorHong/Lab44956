@@ -17,6 +17,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Program.semFull = new Semaphore(Program.size, Program.size);
@@ -28,14 +29,14 @@ namespace WindowsFormsApp1
             studentThread.Start();
         }
 
+        //Used to update the text box, since it is on a different thread it requires the invoke method because
+        //otherwise it will throw an exception when the the non-UI thread tries to access it
         private void UpdateTextBox(string message)
         {
-            if (InvokeRequired)
-            {
+            if (InvokeRequired) {
                 Invoke(new Action<string>(UpdateTextBox), message);
             }
-            else
-            {
+            else {
                 listBox1.Items.Add(message + Environment.NewLine);
             }
         }
