@@ -19,12 +19,9 @@ namespace WindowsFormsApp1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Initialize synchronization components
             Program.semFull = new Semaphore(Program.size, Program.size);
             Program.semEmpty = new Semaphore(0, Program.size);
             Program.cBuffer = new CircularBuffer<int>(Program.size);
-
-            // Start background threads
             Thread teacherThread = new Thread(Teacher.teacher);
             Thread studentThread = new Thread(Student.student);
             teacherThread.Start();
